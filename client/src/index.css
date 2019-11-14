@@ -71,6 +71,15 @@ body {
   background-color: lightseagreen;
 }
 
+.delete-button {
+  position: absolute;
+  top: 125px;
+  right: 25px;
+  border: 1px solid grey;
+  padding: 5px 10px;
+  background-color: mediumvioletred;
+}
+
 .save-button:hover,
 .edit-button:hover {
   background-color: green;
@@ -78,9 +87,23 @@ body {
   cursor: pointer;
 }
 
-.home-button {
+.delete-button:hover {
+  background-color: mediumorchid;
+  color: white;
+  cursor: pointer;
+}
+
+.menu-buttons {
+  /* padding: 5px 10px; */
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-button {
+  margin: 10px;
+  background-color: mediumturquoise;
   padding: 5px 10px;
-  background-color: lightskyblue;
+  text-align: center;
 }
 
 .movie-warning {
