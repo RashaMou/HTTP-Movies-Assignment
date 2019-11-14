@@ -1,11 +1,14 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 const EditForm = props => {
+  console.log("id", props.location.state.id);
   const [editedMovie, setEditedMovie] = useState({
-    title: props.history.location.state.title,
-    director: props.history.location.state.director,
-    metascore: props.history.location.state.metascore,
-    stars: props.history.location.state.stars
+    id: props.location.state.id,
+    title: props.location.state.title,
+    director: props.location.state.director,
+    metascore: props.location.state.metascore,
+    stars: props.location.state.stars
   });
 
   const handleChange = event => {
@@ -13,6 +16,18 @@ const EditForm = props => {
       ...editedMovie,
       [event.target.name]: event.target.value
     });
+  };
+
+  const sendEdit = e => {
+    e.preventDefault();
+    console.log("editedMovie", editedMovie);
+    axios
+      .put(
+        `http://localhost:5000/api/movies/${props.location.state.id}`,
+        editedMovie
+      )
+      .then(res => props.history.push(`/movies/${props.location.state.id}`))
+      .catch(err => console.log(err));
   };
 
   return (
@@ -45,7 +60,9 @@ const EditForm = props => {
         value={editedMovie.stars}
         onChange={handleChange}
       />
-      <button>Update movie</button>
+      <button type="submit" onClick={sendEdit}>
+        Update movie
+      </button>
     </form>
   );
 };
