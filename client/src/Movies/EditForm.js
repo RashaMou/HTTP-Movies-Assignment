@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const EditForm = props => {
-  console.log("id", props.location.state.id);
   const [editedMovie, setEditedMovie] = useState({
     id: props.location.state.id,
     title: props.location.state.title,
@@ -20,7 +19,6 @@ const EditForm = props => {
 
   const sendEdit = e => {
     e.preventDefault();
-    console.log("editedMovie", editedMovie);
     axios
       .put(
         `http://localhost:5000/api/movies/${props.location.state.id}`,

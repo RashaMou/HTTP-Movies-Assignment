@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const AddForm = props => {
-  console.log(props.history);
   const [newMovie, setNewMovie] = useState({
     title: "",
     director: "",
@@ -17,7 +16,7 @@ const AddForm = props => {
     }
     setNewMovie({
       ...newMovie,
-      [e.target.name]: e.target.value
+      [e.target.name]: value
     });
   };
 
@@ -25,7 +24,7 @@ const AddForm = props => {
     e.preventDefault();
     axios
       .post("http://localhost:5000/api/movies", newMovie)
-      .then(res => props.history.push("/"))
+      .then(props.history.push("/"))
       .catch(err => console.log(err));
   };
 
